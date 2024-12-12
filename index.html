@@ -3,9 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horus Cheung</title>
+    <title>Horus Cheung | Developer</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+        nav ul li a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+#hero {
+    position: relative;
+    background: url('./hero.png') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+#hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: 1;
+}
+
+#hero .hero-content {
+    position: relative;
+    z-index: 2; /* Places content above the overlay */
+}
+
+#hero h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+#hero p {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+#hero a {
+    padding: 10px 20px;
+    background-color: #FF5F15;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+#hero a:hover {
+    background-color: #D94A0B;
+}
+
+    /* Skills Section */
+    #skills .skills-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    #skills .skill {
+        width: 200px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #skills .skill:hover {
+        transform: scale(1.05); /* Slightly enlarge the card */
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add a deeper shadow */
+    }
+    #skills .skill img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+    }
+    #skills .skill h3 {
+        font-size: 1.2em;
+        margin: 10px 0;
+    }
+
+
+        /* Contact Section */
+        #contact {
+            padding: 50px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        #contact form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: auto;
+        }
+        #contact label, #contact input, #contact textarea {
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        #contact input, #contact textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #contact input[type="submit"] {
+            background-color: #FF5F15;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #contact input[type="submit"]:hover {
+            background-color: #D94A0B;
+        }
+    </style>
 </head>
 <body>
-    <p>Horus is just a chill guy who likes creating webpages.</p>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+<section id="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h1>Hi,</h1>
+        <p>I'm Horus Cheung — Developer, Innovator, Creator, and Problem Solver.</p>
+        <a href="#contact">Get in Touch</a>
+    </div>
+</section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills-list">
+            <div class="skill">
+			
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"  alt="TypeScript" />
+                <h3>TypeScript</h3>
+                <p>Strong expertise in building scalable applications with TypeScript.</p>
+            </div>
+			        <!-- MongoDB -->
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+            <h3>MongoDB</h3>
+            <p>Experience with MongoDB for database management and querying.</p>
+        </div>
+
+        <!-- Express -->
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="Express">
+            <h3>Express</h3>
+            <p>Proficient in building backend APIs using Express.js.</p>
+        </div>
+
+        <!-- React -->
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React">
+            <h3>React</h3>
+            <p>Skilled in building interactive user interfaces with React.</p>
+        </div>
+
+        <!-- Node.js -->
+        <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js">
+            <h3>Node.js</h3>
+            <p>Experienced in server-side development using Node.js.</p>
+        </div>
+            <div class="skill">
+                
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original-wordmark.svg" alt="Java"/>
+                <h3>Java</h3>
+                <p>Experienced in Java for backend development and object-oriented programming.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form action="mailto:horuscheung.coding@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <input type="submit" value="Send">
+        </form>
+    </section>
 </body>
 </html>
