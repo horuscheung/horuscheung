@@ -1,0 +1,208 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Navigation Bar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+.btn {
+  transition-property: all;
+  transition-duration: 0.6s;
+  transition-timing-function: ease;
+}
+
+.btn {
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 2em;
+  max-width: 160px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 10px 20px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.navigate-button {
+  letter-spacing: 0;
+}
+
+.navigate-button:hover,
+.navigate-button:active {
+  letter-spacing: 5px;
+}
+
+.navigate-button:after,
+.navigate-button:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#fff, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.navigate-button:hover:after,
+.navigate-button:hover:before {
+  backface-visibility: hidden;
+  border-color: #fff;
+  transition: width 350ms ease-in-out;
+  width: 70%;
+}
+
+.navigate-button:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 70%;
+}
+
+#hero {
+  position: relative;
+  background: url("./hero.png") no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+#hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#hero .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+#hero h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+#hero p {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+#hero a {
+  padding: 10px 20px;
+  background-color: #ff5f15;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+#hero a:hover {
+  background-color: #d94a0b;
+}
+
+/* Skills Section */
+#skills .skills-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+#skills .skill {
+  width: 200px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#skills .skill:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+#skills .skill img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+#skills .skill h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+/* Contact Section */
+#contact {
+  padding: 50px;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+#contact form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+
+#contact label,
+#contact input,
+#contact textarea {
+  margin: 10px 0;
+  font-size: 1em;
+}
+
+#contact input,
+#contact textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#contact input[type="submit"] {
+  background-color: #ff5f15;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#contact input[type="submit"]:hover {
+  background-color: #d94a0b;
+}
