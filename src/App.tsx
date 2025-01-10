@@ -38,25 +38,37 @@ const App: React.FC = () => {
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░ 
 ░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓███████▓▒░  
                                                                    `);
+  const handleScrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div>
       <nav>
         <ul>
           <li>
-            <a href="#hero" className="btn navigate-button">
+            <button
+              className="btn navigate-button"
+              onClick={() => handleScrollToSection("hero")}
+            >
               Home
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#skills" className="btn navigate-button">
+            <button
+              className="btn navigate-button"
+              onClick={() => handleScrollToSection("skills")}
+            >
               Skills
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#contact" className="btn navigate-button">
+            <button
+              className="btn navigate-button"
+              onClick={() => handleScrollToSection("contact")}
+            >
               Contact
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
@@ -69,7 +81,12 @@ const App: React.FC = () => {
             I'm Horus Cheung — Developer, Innovator, Creator, and Problem
             Solver.
           </p>
-          <a href="#contact">Get in Touch</a>
+          <button
+            className="btn in-touch-button"
+            onClick={() => handleScrollToSection("contact")}
+          >
+            Get in Touch
+          </button>
         </div>
       </section>
 
