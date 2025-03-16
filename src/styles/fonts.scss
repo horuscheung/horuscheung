@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// Font families
+$font-primary: 'Inter', sans-serif;
+$font-secondary: 'Space Grotesk', sans-serif;
+$font-display: 'Syne', sans-serif;
+
+// Font sizes - Fluid Typography
+$fs-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+$fs-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+$fs-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+$fs-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+$fs-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+$fs-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+$fs-huge: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+
+// Line heights
+$line-height-tight: 1.1;
+$line-height-normal: 1.5;
+$line-height-loose: 1.8;
+
+// Letter spacing
+$letter-spacing-tight: -0.02em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.05em;
+$letter-spacing-wider: 0.1em;
+
+// CSS variables for convenience in non-Sass contexts
+:root {
+  /* Font families */
+  --font-primary: #{$font-primary};
+  --font-secondary: #{$font-secondary};
+  --font-display: #{$font-display};
+  
+  /* Font sizes - Fluid Typography */
+  --fs-sm: #{$fs-sm};
+  --fs-base: #{$fs-base};
+  --fs-md: #{$fs-md};
+  --fs-lg: #{$fs-lg};
+  --fs-xl: #{$fs-xl};
+  --fs-xxl: #{$fs-xxl};
+  --fs-huge: #{$fs-huge};
+
+  /* Line heights */
+  --line-height-tight: #{$line-height-tight};
+  --line-height-normal: #{$line-height-normal};
+  --line-height-loose: #{$line-height-loose};
+  
+  /* Letter spacing */
+  --letter-spacing-tight: #{$letter-spacing-tight};
+  --letter-spacing-normal: #{$letter-spacing-normal};
+  --letter-spacing-wide: #{$letter-spacing-wide};
+  --letter-spacing-wider: #{$letter-spacing-wider};
+}
+
+/* Utility classes */
+.text-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+}
+
+.text-title {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  line-height: var(--line-height-normal);
+}
+
+.text-body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: var(--line-height-normal);
+}
+
+.text-caption {
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  line-height: var(--line-height-loose);
+  letter-spacing: var(--letter-spacing-wide);
+}

@@ -1,0 +1,340 @@
+/* Brutalist Design System */
+:root {
+  --brutalist-primary: #ff3c00;
+  --brutalist-secondary: #0015ff;
+  --brutalist-accent: #faff00;
+  --brutalist-bg: #ffffff; /* Lighter background for better contrast */
+  --brutalist-dark: #000000;
+  --brutalist-light: #ffffff;
+  --brutalist-text: #121212; /* Dark text color for better readability */
+}
+
+/* Global Brutalist Elements */
+body {
+  font-family: "Courier New", monospace;
+  background-color: var(--brutalist-bg);
+  color: var(--brutalist-text);
+}
+
+/* Brutalist Typography */
+.brutalist-title {
+  font-size: clamp(2rem, 8vw, 6rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 0.9;
+  margin-bottom: 1rem;
+  color: var(--brutalist-dark);
+  -webkit-text-stroke: 2px var(--brutalist-primary); /* Increased stroke width */
+  transform: skew(-5deg);
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.7); /* Added shadow for legibility */
+}
+
+.brutalist-text {
+  font-family: "Courier New", monospace;
+  line-height: 1.5;
+  color: var(--brutalist-text);
+  font-weight: 600; /* Made text bolder */
+}
+
+/* Brutalist Components */
+.brutalist-box {
+  border: 3px solid var(--brutalist-dark);
+  padding: 20px;
+  position: relative;
+  box-shadow: 8px 8px 0 var(--brutalist-dark);
+  background: var(--brutalist-light);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 var(--brutalist-dark);
+  }
+}
+
+.brutalist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.brutalist-button {
+  background-color: var(--brutalist-primary);
+  color: var(--brutalist-light);
+  border: 3px solid var(--brutalist-dark);
+  padding: 12px 24px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 4px 4px 0 var(--brutalist-dark);
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--brutalist-dark);
+  }
+
+  &:active {
+    transform: translate(0px, 0px);
+    box-shadow: 0px 0px 0 var(--brutalist-dark);
+  }
+}
+
+/* Brutalist Navigation */
+.brutalist-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--brutalist-light);
+  border-bottom: 5px solid var(--brutalist-dark);
+  z-index: 1000;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .brutalist-nav-link {
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border: 2px solid var(--brutalist-dark);
+    color: var(--brutalist-dark);
+    background: var(--brutalist-light);
+    transition: all 0.2s;
+
+    &:hover {
+      background: var(--brutalist-primary);
+      color: var(--brutalist-light);
+    }
+  }
+}
+
+/* Brutalist Hero Section */
+.brutalist-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(45deg, transparent 25%, var(--brutalist-accent) 25%, var(--brutalist-accent) 50%, 
+      transparent 50%, transparent 75%, var(--brutalist-accent) 75%, var(--brutalist-accent));
+    background-size: 20px 20px;
+    opacity: 0.1;
+    z-index: -1;
+  }
+
+  .brutalist-hero-content {
+    max-width: 800px;
+    padding: 2rem;
+    border: 5px solid var(--brutalist-dark);
+    background: var(--brutalist-light);
+    box-shadow: 15px 15px 0 var(--brutalist-secondary);
+    transform: rotate(-1deg);
+  }
+
+  .brutalist-hero-title {
+    font-size: clamp(3rem, 10vw, 7rem);
+    line-height: 0.9;
+    margin: 0;
+    color: var(--brutalist-dark);
+    -webkit-text-stroke: 2px var(--brutalist-primary);
+    text-transform: uppercase;
+  }
+
+  .brutalist-hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    margin-top: 1rem;
+    font-family: "Courier New", monospace;
+    color: var(--brutalist-text);
+    font-weight: bold; /* Added bold for better visibility */
+  }
+}
+
+/* Brutalist Project Cards */
+.brutalist-project {
+  border: 3px solid var(--brutalist-dark);
+  background: var(--brutalist-light);
+  box-shadow: 10px 10px 0 var(--brutalist-dark);
+  transition: transform 0.3s, box-shadow 0.3s;
+  transform-origin: center;
+
+  &:hover {
+    transform: rotate(-1deg) translate(-5px, -5px);
+    box-shadow: 15px 15px 0 var(--brutalist-dark);
+  }
+
+  .brutalist-project-header {
+    background: var(--brutalist-primary);
+    color: var(--brutalist-light);
+    padding: 1rem;
+    border-bottom: 3px solid var(--brutalist-dark);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5); /* Added shadow for better readability */
+  }
+
+  .brutalist-project-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Brutalist Form Elements */
+.brutalist-form-field {
+  margin-bottom: 1.5rem;
+  
+  label {
+    display: block;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    color: var(--brutalist-dark); /* Ensure dark color */
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    font-family: "Courier New", monospace;
+    border: 3px solid var(--brutalist-dark);
+    background: var(--brutalist-light);
+    font-size: 1rem;
+    color: var(--brutalist-dark); /* Ensure dark color */
+
+    &:focus {
+      outline: none;
+      border-color: var(--brutalist-primary);
+      box-shadow: 0 0 0 3px rgba(255, 60, 0, 0.3);
+    }
+    
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.5); /* Darker placeholder text */
+    }
+  }
+}
+
+/* Glitch Effect */
+.brutalist-glitch {
+  position: relative;
+  color: var(--brutalist-dark);
+  font-size: clamp(2rem, 8vw, 6rem);
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-shadow: 3px 3px 0 var(--brutalist-primary), 
+               -3px -3px 0 var(--brutalist-secondary);
+  background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent background for better legibility */
+  padding: 0.2em;
+  
+  &::before, &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  &::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--brutalist-secondary);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-1 3s infinite linear alternate-reverse;
+  }
+  
+  &::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--brutalist-primary);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+  }
+}
+
+@keyframes glitch-anim-1 {
+  0% {clip: rect(86px, 9999px, 62px, 0);}
+  5% {clip: rect(141px, 9999px, 147px, 0);}
+  10% {clip: rect(138px, 9999px, 151px, 0);}
+  15% {clip: rect(114px, 9999px, 7px, 0);}
+  20% {clip: rect(48px, 9999px, 30px, 0);}
+  25% {clip: rect(132px, 9999px, 24px, 0);}
+  30% {clip: rect(56px, 9999px, 99px, 0);}
+  35% {clip: rect(25px, 9999px, 106px, 0);}
+  40% {clip: rect(131px, 9999px, 147px, 0);}
+  45% {clip: rect(109px, 9999px, 13px, 0);}
+  50% {clip: rect(41px, 9999px, 95px, 0);}
+  55% {clip: rect(25px, 9999px, 144px, 0);}
+  60% {clip: rect(65px, 9999px, 9px, 0);}
+  65% {clip: rect(70px, 9999px, 30px, 0);}
+  70% {clip: rect(42px, 9999px, 149px, 0);}
+  75% {clip: rect(88px, 9999px, 91px, 0);}
+  80% {clip: rect(32px, 9999px, 105px, 0);}
+  85% {clip: rect(146px, 9999px, 122px, 0);}
+  90% {clip: rect(8px, 9999px, 137px, 0);}
+  95% {clip: rect(35px, 9999px, 69px, 0);}
+  100% {clip: rect(121px, 9999px, 28px, 0);}
+}
+
+@keyframes glitch-anim-2 {
+  0% {clip: rect(121px, 9999px, 68px, 0);}
+  5% {clip: rect(15px, 9999px, 37px, 0);}
+  10% {clip: rect(121px, 9999px, 68px, 0);}
+  15% {clip: rect(139px, 9999px, 99px, 0);}
+  20% {clip: rect(43px, 9999px, 136px, 0);}
+  25% {clip: rect(56px, 9999px, 78px, 0);}
+  30% {clip: rect(131px, 9999px, 24px, 0);}
+  35% {clip: rect(116px, 9999px, 16px, 0);}
+  40% {clip: rect(67px, 9999px, 144px, 0);}
+  45% {clip: rect(89px, 9999px, 75px, 0);}
+  50% {clip: rect(4px, 9999px, 115px, 0);}
+  55% {clip: rect(86px, 9999px, 125px, 0);}
+  60% {clip: rect(96px, 9999px, 2px, 0);}
+  65% {clip: rect(146px, 9999px, 104px, 0);}
+  70% {clip: rect(131px, 9999px, 74px, 0);}
+  75% {clip: rect(41px, 9999px, 15px, 0);}
+  80% {clip: rect(41px, 9999px, 67px, 0);}
+  85% {clip: rect(127px, 9999px, 62px, 0);}
+  90% {clip: rect(54px, 9999px, 100px, 0);}
+  95% {clip: rect(102px, 9999px, 33px, 0);}
+  100% {clip: rect(42px, 9999px, 27px, 0);}
+}
+
+/* Grid pattern */
+.brutalist-grid-bg {
+  background-image: linear-gradient(var(--brutalist-dark) 1px, transparent 1px), 
+                    linear-gradient(90deg, var(--brutalist-dark) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+  position: relative;
+  background-color: var(--brutalist-bg); /* Ensure background color is applied */
+}
+
+/* Additional Contrast Fixes */
+h2, h3, h4, h5, h6 {
+  color: var(--brutalist-dark);
+}
+
+.section-subtitle {
+  color: var(--brutalist-dark);
+  font-weight: bold;
+}

@@ -1,0 +1,98 @@
+// Color palette - 2025 modern design
+$color-dark: #0a0a0a;
+$color-dark-200: #121212;
+$color-dark-300: #1a1a1a;
+$color-light: #ffffff;
+$color-light-100: #f5f5f5;
+$color-accent-primary: #ff6b35;
+$color-accent-secondary: #3a86ff;
+
+// Theme colors
+$bg-primary: #0a0a0a;
+$bg-secondary: #0f0f0f;
+$bg-card: #151515;
+$bg-input: #1a1a1a;
+
+$text-primary: #f5f5f5;
+$text-secondary: #b0b0b0;
+$text-light: #ffffff;
+
+$accent: #ff5f15;
+$accent-secondary: $color-accent-secondary;
+
+// Gradients
+$gradient-text: linear-gradient(45deg, $accent, #ff9966);
+$gradient-accent: linear-gradient(90deg, $accent, #ff9966);
+$gradient-button: linear-gradient(45deg, $accent, #ff8c42);
+$gradient-button-hover: linear-gradient(45deg, #ff8c42, $accent);
+$gradient-card-back: linear-gradient(135deg, #212121, #000000);
+
+// Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+$shadow-card: 0 10px 30px rgba(0, 0, 0, 0.2);
+$shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.25);
+
+// Animation speeds
+$transition-fast: 0.3s ease;
+$transition-normal: 0.5s ease;
+$transition-slow: 0.8s ease;
+$transition-bounce: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+// CSS variables for convenience in non-Sass contexts
+:root {
+  /* Color palette - 2025 modern design */
+  --color-dark: #{$color-dark};
+  --color-dark-200: #{$color-dark-200};
+  --color-dark-300: #{$color-dark-300};
+  --color-light: #{$color-light};
+  --color-light-100: #{$color-light-100};
+  --color-accent-primary: #{$color-accent-primary};
+  --color-accent-secondary: #{$color-accent-secondary};
+  
+  /* Theme colors */
+  --bg-primary: #{$bg-primary};
+  --bg-secondary: #{$bg-secondary};
+  --bg-card: #{$bg-card};
+  --bg-input: #{$bg-input};
+  
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-light: #{$text-light};
+  
+  --accent: #{$accent};
+  --accent-secondary: #{$accent-secondary};
+  
+  /* Gradients */
+  --gradient-text: #{$gradient-text};
+  --gradient-accent: #{$gradient-accent};
+  --gradient-button: #{$gradient-button};
+  --gradient-button-hover: #{$gradient-button-hover};
+  --gradient-card-back: #{$gradient-card-back};
+  
+  /* Shadows */
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-card: #{$shadow-card};
+  --shadow-card-hover: #{$shadow-card-hover};
+  
+  /* Animation speeds */
+  --transition-fast: #{$transition-fast};
+  --transition-normal: #{$transition-normal};
+  --transition-slow: #{$transition-slow};
+  --transition-bounce: #{$transition-bounce};
+}
+
+/* Dark theme is default, this would be for a potential light theme switch */
+.light-theme {
+  --bg-primary: #{$color-light};
+  --bg-secondary: #{$color-light-100};
+  --bg-card: #{$color-light};
+  --bg-input: rgba(0, 0, 0, 0.05);
+  
+  --text-primary: #{$color-dark};
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --text-light: #{$color-light};
+}
