@@ -23,82 +23,86 @@ export const handleMagneticMouseLeave = (
 
 // Text scramble animation
 export class TextScramble {
-  private el: HTMLElement;
-  private chars: string;
-  private queue: {
-    from: string;
-    to: string;
-    start: number;
-    end: number;
-    char?: string;
-  }[];
-  private frame: number;
-  private frameRequest: number;
-  private resolve: () => void;
+  el: HTMLElement;
+  chars: string;
+  queue: number;
+  frameRequest: number | null;
+  frame: number;
+  resolvePromise: (() => void) | null;
 
   constructor(el: HTMLElement) {
     this.el = el;
     this.chars = "!<>-_\\/[]{}—=+*^?#________";
-    this.queue = [];
+    this.queue = 0;
+    this.frameRequest = null;
     this.frame = 0;
-    this.frameRequest = 0;
-    this.resolve = () => {};
-    this.update = this.update.bind(this);
+    this.resolvePromise = null;
   }
 
-  setText(newText: string) {
+  setText(newText: string, maxChars: number = 30): Promise<void> {
+    // Limit text length if it's too long
+    if (newText.length > maxChars) {
+      newText = newText.substring(0, maxChars);
+    }
+
+    // Clear any existing animation
+    if (this.frameRequest) {
+      cancelAnimationFrame(this.frameRequest);
+      this.frameRequest = null;
+    }
+
     const oldText = this.el.innerText;
     const length = Math.max(oldText.length, newText.length);
-    const promise = new Promise<void>((resolve) => (this.resolve = resolve));
-    this.queue = [];
 
-    for (let i = 0; i < length; i++) {
-      const from = oldText[i] || "";
-      const to = newText[i] || "";
-      const start = Math.floor(Math.random() * 40);
-      const end = start + Math.floor(Math.random() * 40);
-      this.queue.push({ from, to, start, end });
-    }
-
-    cancelAnimationFrame(this.frameRequest);
+    this.queue = 0;
     this.frame = 0;
-    this.update();
-    return promise;
-  }
 
-  update() {
-    let output = "";
-    let complete = 0;
+    // Clear element text first to ensure clean animation
+    this.el.innerText = "";
 
-    for (let i = 0, n = this.queue.length; i < n; i++) {
-      let { from, to, start, end, char } = this.queue[i];
+    return new Promise<void>((resolve) => {
+      this.resolvePromise = resolve;
 
-      if (this.frame >= end) {
-        complete++;
-        output += to;
-      } else if (this.frame >= start) {
-        if (!char || Math.random() < 0.28) {
-          char = this.randomChar();
-          this.queue[i].char = char;
+      // Reset the element to ensure proper rendering
+      this.el.style.visibility = "visible";
+
+      const update = () => {
+        let output = "";
+        let complete = 0;
+
+        for (let i = 0; i < length; i++) {
+          if (i >= newText.length) {
+            complete++;
+            continue;
+          }
+
+          const char = newText[i];
+          const doneChance = Math.random() * 100;
+          const isDone = this.frame >= 5 + i * 2 || doneChance > 90;
+
+          if (isDone) {
+            complete++;
+            output += char;
+          } else {
+            output += this.chars[Math.floor(Math.random() * this.chars.length)];
+          }
         }
-        output += `<span class="scramble-char">${char}</span>`;
-      } else {
-        output += from;
-      }
-    }
 
-    this.el.innerHTML = output;
+        this.el.innerText = output;
 
-    if (complete === this.queue.length) {
-      this.resolve();
-    } else {
-      this.frameRequest = requestAnimationFrame(this.update);
-      this.frame++;
-    }
-  }
+        if (complete === length) {
+          if (this.resolvePromise) {
+            this.resolvePromise();
+            this.resolvePromise = null;
+          }
+        } else {
+          this.frame++;
+          this.frameRequest = requestAnimationFrame(update);
+        }
+      };
 
-  randomChar() {
-    return this.chars[Math.floor(Math.random() * this.chars.length)];
+      this.frameRequest = requestAnimationFrame(update);
+    });
   }
 }
 

@@ -147,12 +147,25 @@ body {
   }
 
   .brutalist-hero-content {
-    max-width: 800px;
+    max-width: 1000px; /* Reduced for better text containment */
     padding: 2rem;
     border: 5px solid var(--brutalist-dark);
     background: var(--brutalist-light);
     box-shadow: 15px 15px 0 var(--brutalist-secondary);
     transform: rotate(-1deg);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden; /* Ensure content doesn't overflow */
+  
+    .brutalist-glitch {
+      font-size: clamp(2.5rem, 6vw, 5rem); /* Slightly reduced font size */
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+      text-overflow: ellipsis;
+    }
   }
 
   .brutalist-hero-title {
@@ -173,20 +186,21 @@ body {
   }
 }
 
-/* Brutalist Project Cards */
-.brutalist-project {
+/* Brutalist knowledge Cards */
+.brutalist-knowledge {
   border: 3px solid var(--brutalist-dark);
   background: var(--brutalist-light);
   box-shadow: 10px 10px 0 var(--brutalist-dark);
   transition: transform 0.3s, box-shadow 0.3s;
   transform-origin: center;
+  width: 100%; /* Ensure cards take full width of their grid cell */
 
   &:hover {
     transform: rotate(-1deg) translate(-5px, -5px);
     box-shadow: 15px 15px 0 var(--brutalist-dark);
   }
 
-  .brutalist-project-header {
+  .brutalist-knowledge-header {
     background: var(--brutalist-primary);
     color: var(--brutalist-light);
     padding: 1rem;
@@ -194,7 +208,7 @@ body {
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5); /* Added shadow for better readability */
   }
 
-  .brutalist-project-content {
+  .brutalist-knowledge-content {
     padding: 1.5rem;
   }
 }
@@ -237,7 +251,7 @@ body {
 .brutalist-glitch {
   position: relative;
   color: var(--brutalist-dark);
-  font-size: clamp(2rem, 8vw, 6rem);
+  font-size: clamp(2rem, 6vw, 5rem);
   line-height: 1;
   text-transform: uppercase;
   font-weight: 900;
@@ -246,6 +260,8 @@ body {
                -3px -3px 0 var(--brutalist-secondary);
   background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent background for better legibility */
   padding: 0.2em;
+  overflow: hidden;
+  max-width: 100%;
   
   &::before, &::after {
     content: attr(data-text);
@@ -337,4 +353,329 @@ h2, h3, h4, h5, h6 {
 .section-subtitle {
   color: var(--brutalist-dark);
   font-weight: bold;
+}
+
+// Add these responsive styles to your existing brutalism.scss file
+
+// Mobile navigation styles
+.nav-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-header {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+}
+
+.mobile-logo {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 100;
+}
+
+.hamburger {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #000;
+  position: relative;
+  transition: all 0.3s ease;
+
+  &:before,
+  &:after {
+    content: '';
+    width: 25px;
+    height: 3px;
+    background: #000;
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease;
+  }
+
+  &:before {
+    top: -8px;
+  }
+
+  &:after {
+    top: 8px;
+  }
+
+  &.open {
+    background: transparent;
+
+    &:before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+  }
+}
+
+// Responsive grid adjustments
+.responsive-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Increased from 280px to 350px */
+}
+.responsive-grid-knowledge {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Increased from 280px to 350px */
+}
+
+.skill-card {
+  transition: transform 0.3s ease;
+}
+
+.responsive-form {
+  .brutalist-form-field {
+    margin-bottom: 15px;
+  }
+
+  .brutalist-input {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+// Highlighted skill styles
+.highlighted-skill {
+  border: 4px solid #e63946;
+  box-shadow: 0 0 15px rgba(230, 57, 70, 0.7);
+  transform: scale(1.02);
+  animation: pulse 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1.02); box-shadow: 0 0 15px rgba(230, 57, 70, 0.7); }
+  50%      { transform: scale(1.06); box-shadow: 0 0 25px rgba(230, 57, 70, 0.9); }
+}
+
+// Media queries for responsiveness
+@media (max-width: 992px) {
+  .brutalist-hero-content {
+    width: 75% !important;
+  }
+
+  .brutalist-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  // Navigation adjustments
+  .brutalist-nav {
+    position: fixed; // Changed from sticky to fixed
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1500; // Higher z-index to ensure it stays on top
+    background: var(--brutalist-light); // Ensure background is solid
+  }
+  
+  // Add padding to body to prevent content from hiding behind fixed header
+  body {
+    padding-top: 60px; // Adjust based on your header height
+  }
+
+  .mobile-nav-header {
+    display: flex;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    &.show {
+      max-height: 300px;
+      border-top: 2px solid #000;
+    }
+
+    li {
+      margin: 0;
+      width: 100%;
+      text-align: center;
+      padding: 0;
+
+      button {
+        width: 100%;
+        padding: 15px;
+        margin: 0;
+        border-radius: 0;
+        border-bottom: 1px solid #eee;
+
+        &:hover {
+          transform: none !important;
+        }
+      }
+    }
+  }
+
+  // Hero section adjustments
+  .brutalist-hero {
+    min-height: 70vh;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 60px 15px 20px !important;
+  }
+
+  .brutalist-hero-content {
+    width: 100% !important;
+    padding: 25px !important;
+  }
+
+  .brutalist-hero-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  // Container spacing
+  .container {
+    padding: 0 15px;
+  }
+
+  .section-padding {
+    padding: 60px 0;
+  }
+
+  // Projects and skills adjustments
+  .brutalist-box {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  // Improved touch targets for mobile
+  button, .brutalist-button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 20px;
+  }
+  
+  .brutalist-input, textarea {
+    padding: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  // Even smaller screens
+  .brutalist-hero-content h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  .brutalist-title {
+    font-size: 1.6rem;
+  }
+  
+  .brutalist-box {
+    padding: 15px;
+  }
+  
+  .section-padding {
+    padding: 40px 0;
+  }
+}
+
+// Add these fixes at the end of your brutalism.scss file
+
+// Fix for horizontal overflow on mobile
+@media (max-width: 768px) {
+  .brutalist-grid-bg, 
+  .brutalist-hero, 
+  .section-padding, 
+  .brutalist-box, 
+  .brutalist-nav {
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .brutalist-hero {
+    padding: 60px 0 20px !important; // Remove horizontal padding
+  }
+
+  .brutalist-hero-content {
+    width: calc(100% - 30px) !important; // Account for margins
+    box-sizing: border-box;
+    margin: 0 15px !important;
+  }
+
+  .responsive-grid {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  // Fix for any possible overflow from grid items
+  .brutalist-grid > * {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  // Ensure all sections are properly contained
+  section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  // Fix for footer overflow
+  footer.brutalist-box {
+    width: calc(100% - 40px);
+    margin: 20px;
+    box-sizing: border-box;
+  }
+}
+
+// Ensure all content is properly contained at very small screens
+@media (max-width: 480px) {
+  .brutalist-hero-content,
+  .container,
+  .brutalist-box,
+  .brutalist-knowledge {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  
+  .brutalist-hero-content {
+    transform: none !important; // Remove any rotation that might cause overflow
+  }
 }
