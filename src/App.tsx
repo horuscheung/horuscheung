@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./App.scss";
 import "./brutalism.scss"; // Import the new brutalism styles
+import heroImg from "./hero.png"; // ← Add this import
+import brainIcon from "./brain.svg"; // ← Add this import
+import instagramIcon from "./assets/instagram.svg";
+import githubIcon from "./assets/github.svg";
+import xIcon from "./assets/x.svg";
+import linkedinIcon from "./assets/linkedin.svg";
 import CursorFollower from "./components/CursorFollower";
 import {
   handleMagneticMouseMove,
@@ -70,6 +76,13 @@ const App: React.FC = () => {
   // Section-based scrolling
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      // only snap when scrolling down in hero or up in about
+      const dir = e.deltaY > 0 ? 1 : -1;
+      const idx = currentSectionIndexRef.current;
+      if (!(idx === 0 && dir === 1) && !(idx === 1 && dir === -1)) {
+        return; // native scroll elsewhere
+      }
+
       e.preventDefault();
 
       if (isScrollingRef.current) return;
@@ -218,17 +231,11 @@ const App: React.FC = () => {
         }}
       >
         <div className="nav-container">
+          {/* desktop logo */}
+          <div className="desktop-logo">HORUS CHEUNG</div>
+
           <div className="mobile-nav-header">
             <h3 className="mobile-logo">HORUS CHEUNG</h3>
-            <button
-              className="mobile-menu-toggle"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <span
-                className={`hamburger ${mobileMenuOpen ? "open" : ""}`}
-              ></span>
-            </button>
           </div>
 
           <ul className={`nav-links ${mobileMenuOpen ? "show" : ""}`}>
@@ -251,6 +258,42 @@ const App: React.FC = () => {
               )
             )}
           </ul>
+
+          {/* social icons on the right */}
+          <div className="nav-social-icons">
+            <a
+              href="https://x.com/horuscheung"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={xIcon} alt="X" className="social-icon" />
+            </a>
+            <a
+              href="https://github.com/horuscheung"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={githubIcon} alt="GitHub" className="social-icon" />
+            </a>
+            <a
+              href="https://instagram.com/horus.developer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={instagramIcon}
+                alt="Instagram"
+                className="social-icon"
+              />
+            </a>
+            <a
+              href="https://linkedin.com/in/horuscheung"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={linkedinIcon} alt="LinkedIn" className="social-icon" />
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -271,7 +314,7 @@ const App: React.FC = () => {
             className="brutalist-hero-image"
             style={{
               flex: 1,
-              backgroundImage: "url('src/hero.png')", // <-- replace with your image path
+              backgroundImage: `url(${heroImg})`, // ← Use the imported URL
               backgroundSize: "contain", // show entire image
               backgroundRepeat: "no-repeat", // prevent tiling
               backgroundPosition: "center", // center within its box
@@ -613,7 +656,7 @@ const skills = [
   },
   {
     name: "More!",
-    icon: "src/brain.svg",
+    icon: brainIcon, // ← Use imported SVG
     description:
       "I pick up any technology required to solve problems and deliver real results.",
   },

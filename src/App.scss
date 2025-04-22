@@ -82,6 +82,56 @@ nav {
     justify-content: center;
     gap: clamp(1rem, 3vw, 3rem);
   }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-direction: row; // ensure links and socials sit side by side
+
+    .nav-links {
+      flex: 1; /* allow center links to grow */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-social-icons {
+      flex: 0 0 auto; /* prevent shrinking */
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+  }
+
+  .desktop-logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .nav-social-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-logo {
+      display: none;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .mobile-nav-header {
+      display: none;
+    }
+  }
 }
 
 // Highlight active nav link like hover
@@ -174,6 +224,33 @@ nav {
   align-items: center;
   text-align: left;
   color: theme.$text-light;
+}
+
+/* Mobile view hero adjustments */
+@media (max-width: 768px) {
+  #hero {
+    flex-direction: column-reverse !important; /* Stack elements in reverse order */
+    height: auto;
+    min-height: 100vh;
+    padding: 2rem 0;
+    overflow: hidden;
+  }
+  
+  .brutalist-hero-image {
+    min-height: 60vh !important; /* Adjust height for mobile */
+    width: 100% !important; /* Full width */
+    margin-top: 2rem; /* Space between content and image */
+    transform: none !important; /* Reset transform */
+    animation: fadeIn 1.5s ease forwards !important; /* Simpler animation */
+  }
+  
+  .brutalist-hero-content {
+    width: 70% !important; /* Almost full width */
+    margin: 0 auto !important; /* Center horizontally */
+    transform: none !important; /* Reset transform */
+    animation: fadeIn 1.5s ease forwards !important; /* Simpler animation */
+    box-sizing: border-box;
+  }
 }
 
 #hero .overlay {
@@ -384,14 +461,17 @@ nav {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0; /* Remove padding that might cause overflow */
 }
 
 .brutalist-grid.responsive-grid-knowledge {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Even smaller cards */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Even smaller cards */
   gap: 1.5rem;
   width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 0; /* Remove padding that might cause overflow */
 }
 
 .skill-card {
@@ -455,6 +535,164 @@ nav {
   color: #333 !important; /* Darker text for better readability */
 }
 
+/* Fix skill cards display */
+.brutalist-grid.responsive-grid,
+.brutalist-grid.responsive-grid-knowledge {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* Ensure cards are fully contained */
+.skill-card {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+  /* Fix grid containers */
+  .brutalist-grid.responsive-grid,
+  .brutalist-grid.responsive-grid-knowledge {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: block; /* Change from grid to block for mobile */
+  }
+  
+  /* Fix individual cards */
+  .skill-card,
+  .brutalist-knowledge {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 1.5rem 0;
+    box-sizing: border-box;
+    border-left-width: 2px !important;
+    border-right-width: 2px !important;
+  }
+
+  /* Ensure section container holds cards properly */
+  #skills .section-content-container,
+  #knowledge .section-content-container {
+    width: 85%;
+    max-width: 500px;
+    padding: 60px 0 40px;
+    overflow: visible;
+  }
+  
+  /* Remove any potential competing margins */
+  .skill-card .skill-icon-wrapper,
+  .skill-card h3,
+  .skill-card p {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Fix specifically for the about content box */
+#about .brutalist-box {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Fix contact form */
+.responsive-form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  #skills .section-content-container,
+  #knowledge .section-content-container {
+    width: 90%;
+  }
+}
+
+/* Improve skills and knowledge card layouts for mobile */
+@media (max-width: 768px) {
+  .brutalist-grid.responsive-grid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+    gap: 1.5rem;
+    padding: 0; /* Remove any padding that might cause overflow */
+    margin: 0; /* Remove any margin that might cause overflow */
+  }
+  
+  .brutalist-grid.responsive-grid-knowledge {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 1.5rem;
+    padding: 0; /* Remove any padding that might cause overflow */
+    margin: 0; /* Remove any margin that might cause overflow */
+  }
+  
+  .skill-card {
+    width: 100%; /* Full width of container */
+    max-width: 100%; /* Prevent overflow */
+    min-height: auto; /* Let height be determined by content */
+    padding: 1.25rem !important; /* Slightly reduced padding */
+    margin-left: 0; /* Remove left margin */
+    margin-right: 0; /* Remove right margin */
+    margin: 0 0.5rem; /* Add some horizontal margin */
+    box-sizing: border-box; /* Include padding and border in element width */
+  }
+  
+  /* Simplify card design on mobile */
+  .skill-card, .brutalist-knowledge {
+    box-shadow: 3px 3px 0px #000 !important; /* Smaller shadow */
+    border-width: 2px !important; /* Consistent border width */
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-3px) !important; /* Smaller lift effect */
+    box-shadow: 4px 4px 0px #000 !important;
+  }
+  
+  .skill-icon-wrapper {
+    margin-bottom: 0.75rem; /* Less space below icon */
+  }
+  
+  /* Improve knowledge section spacing */
+  .brutalist-knowledge {
+    width: 100%; /* Full width of container */
+    max-width: 100%; /* Prevent overflow */
+    margin: 0 0 1.5rem; /* Remove horizontal margin, keep bottom margin */
+    box-sizing: border-box; /* Include padding and border in width */
+  }
+  
+  .brutalist-knowledge-content {
+    padding: 0.75rem;
+  }
+  
+  /* Fix section padding on mobile */
+  .section-content-container {
+    width: 90%; /* More narrower on mobile to prevent overflow */
+    padding: 60px 0 40px; /* Top and bottom padding only */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  /* Ensure proper spacing in all sections */
+  section:not(#hero) {
+    min-height: auto; /* Let content determine height */
+    padding: 2rem 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  /* Content wrapper needs overflow handling */
+  .content-wrapper {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    width: 100%;
+  }
+  
+  /* Make sure hero content is properly constrained on mobile */
+  .brutalist-hero-content {
+    width: 90% !important; /* Match section container width */
+    box-sizing: border-box; /* Include padding and border in width */
+    padding: 20px !important; /* Smaller padding on mobile */
+  }
+}
+
 /* Improve section heights and spacing */
 section:not(#hero) {
   min-height: 100vh; /* Full viewport height */
@@ -469,7 +707,7 @@ section:not(#hero) {
 .section-content-container {
   padding-top: 80px; /* Header height + some extra space */
   padding-bottom: 60px;
-  width: 100%;
+  width: 95%; /* Change from 100% to 95% to prevent edge-to-edge content */
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -768,9 +1006,20 @@ section {
   box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
+#about .about-content {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 #about .about-content .brutalist-text {
   color: #000;               // existing override
   font-size: 1.125rem;       // increased for better readability
+}
+
+#about .brutalist-box {
+  width: 100%;
+  box-sizing: border-box; /* Include padding and border in width */
 }
 
 #knowledge {
@@ -1195,4 +1444,45 @@ section:not(#hero)::before {
   right: 15%;
   height: 3px;
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Fix mobile nav display */
+@media (max-width: 768px) {
+  .mobile-nav-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
+  
+  .mobile-logo {
+    margin: 0;
+    font-size: 1rem;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-links.show {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 1rem 0;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  
+  .nav-links.show li {
+    margin: 0.5rem 0;
+  }
+  
+  .nav-social-icons {
+    display: none; /* Hide social icons on mobile */
+  }
 }
