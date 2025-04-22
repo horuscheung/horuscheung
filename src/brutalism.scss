@@ -452,7 +452,7 @@ h2, h3, h4, h5, h6 {
   }
 
   .brutalist-input {
-    width: 100%;
+    width: 80%;
     padding: 12px;
   }
 }
@@ -498,10 +498,6 @@ h2, h3, h4, h5, h6 {
     background: var(--brutalist-light); // Ensure background is solid
   }
   
-  // Add padding to body to prevent content from hiding behind fixed header
-  body {
-    padding-top: 60px; // Adjust based on your header height
-  }
 
   .mobile-nav-header {
     display: flex;
