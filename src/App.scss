@@ -354,6 +354,62 @@ nav {
   animation-delay: 0.4s;
 }
 
+/* Fix skill cards display - ensure desktop grid works properly */
+.brutalist-grid.responsive-grid,
+.brutalist-grid.responsive-grid-knowledge {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* Ensure cards are fully contained */
+.skill-card {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Mobile-specific fixes - only applied in mobile view */
+@media (max-width: 768px) {
+  /* Fix grid containers */
+  .brutalist-grid.responsive-grid,
+  .brutalist-grid.responsive-grid-knowledge {
+    display: block; /* Change from grid to block for mobile ONLY */
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Fix individual cards */
+  .skill-card,
+  .brutalist-knowledge {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 1.5rem 0;
+    box-sizing: border-box;
+    border-left-width: 2px !important;
+    border-right-width: 2px !important;
+  }
+
+  /* Remove conflicting mobile margin that could cause overlap */
+  .skill-card {
+    margin: 0 0 1.5rem 0 !important; /* Override any other margin settings */
+  }
+
+  /* Ensure section container holds cards properly */
+  #skills .section-content-container,
+  #knowledge .section-content-container {
+    width: 85%;
+    max-width: 500px;
+    padding: 60px 0 40px;
+    overflow: visible;
+  }
+}
+
 /* Add scroll indicator styles */
 .scroll-indicator-container {
   position: absolute;
@@ -466,7 +522,7 @@ nav {
 
 .brutalist-grid.responsive-grid-knowledge {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Even smaller cards */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Even smaller cards */
   gap: 1.5rem;
   width: 100%;
   max-width: 1200px;
