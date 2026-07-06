@@ -34,7 +34,7 @@ export interface FlightChapter {
   chips: string[];
   url: string;
   fig: string;
-  mock: "trade" | "chat" | "flow" | "shelf";
+  mock: "trade" | "chat" | "flow" | "design";
   side: "left" | "right";
 }
 
@@ -79,16 +79,16 @@ export const FLIGHT_CHAPTERS: FlightChapter[] = [
     side: "left",
   },
   {
-    id: "mindshelf",
+    id: "designlab",
     num: "04",
-    kicker: "KNOWLEDGE / AI",
-    title: "MINDSHELF",
+    kicker: "DESIGN / UI·UX",
+    title: "DESIGNLAB",
     accent: "#4f6df5",
-    copy: "AI reading companion — capture notes from every book, and let the model connect ideas across psychology, history and investing into one living library.",
-    chips: ["HIGHLIGHTS", "EMBEDDINGS", "IDEA GRAPH"],
-    url: "mindshelf.app",
-    fig: "FIG. 04 — IDEAS, CONNECTED",
-    mock: "shelf",
+    copy: "UI/UX design practice — wireframes, design systems and micro-interactions, always centred on how the product feels to the person using it.",
+    chips: ["USER RESEARCH", "DESIGN SYSTEM", "MICRO-INTERACTIONS"],
+    url: "designlab.studio",
+    fig: "FIG. 04 — DESIGNED AROUND PEOPLE",
+    mock: "design",
     side: "right",
   },
 ];
@@ -216,17 +216,31 @@ const MOCK_BODIES: Record<FlightChapter["mock"], React.ReactNode> = {
       <div className="mf-log">▸ run #4021 — 3/4 stages passed, guard validating…</div>
     </div>
   ),
-  shelf: (
-    <div className="mock-body mock-shelf">
-      <div className="ms-note">
-        <span className="ms-book">ATOMIC HABITS · NOTE 12</span>
-        <p>Systems beat goals — design the environment, not the outcome.</p>
+  design: (
+    <div className="mock-body mock-design">
+      <div className="md-canvas">
+        <div className="md-frame">
+          <i className="md-el md-title" />
+          <i className="md-el md-text" />
+          <i className="md-el md-text short" />
+          <i className="md-el md-btn" />
+        </div>
+        <div className="md-panel">
+          <span className="md-label">PALETTE</span>
+          <div className="md-swatches">
+            <i style={{ background: "#22d3ee" }} />
+            <i style={{ background: "#a78bfa" }} />
+            <i style={{ background: "#fb7185" }} />
+            <i style={{ background: "#f2f0ea" }} />
+          </div>
+          <span className="md-label">TYPE</span>
+          <div className="md-type">
+            <b>Aa</b>
+            <span>Display / 48</span>
+          </div>
+        </div>
       </div>
-      <div className="ms-note">
-        <span className="ms-book">POOR CHARLIE'S ALMANACK · NOTE 4</span>
-        <p>Invert the problem — avoid stupidity before chasing brilliance.</p>
-      </div>
-      <div className="ms-ai">◆ AI — 2 ideas linked: mental models × habit design</div>
+      <div className="md-note">◆ USER TEST — “the flow just feels right”</div>
     </div>
   ),
 };

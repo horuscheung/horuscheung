@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
       <div className="hero-inner">
         <div className="hero-text">
           <p className="hero-eyebrow">
-            HONG KONG — MISSION: PORTFOLIO <span className="blink">▮</span>
+            SOFTWARE · AI · DESIGN <span className="blink">▮</span>
           </p>
           <h1 className="hero-title">
             <span className="line line-1">
@@ -72,9 +72,8 @@ const Hero: React.FC = () => {
           </h1>
           <p className="hero-scramble" ref={scrambleRef}></p>
           <p className="hero-desc">
-            <b>Developer, innovator, creator, problem solver.</b> Strap in —
-            the line launches through deep space, past four mission mockups
-            that show how I think and build.
+            <b>Developer, innovator, creator, problem solver.</b> I build
+            software and AI products end-to-end — from idea to launch.
           </p>
         </div>
 
@@ -105,7 +104,7 @@ const Hero: React.FC = () => {
                 <text x="38" y="272">01 LAUNCH</text>
                 <text x="128" y="138">02 RAGDESK</text>
                 <text x="176" y="88">03 FLOWOPS</text>
-                <text x="222" y="20">04 MINDSHELF</text>
+                <text x="222" y="20">04 DESIGNLAB</text>
               </g>
               <g className="mm-sat">
                 <circle cx="170" cy="32" r="3.4" fill="#ffd166" />
@@ -118,15 +117,10 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="hero-cue">
+        <span className="cue-mouse" aria-hidden="true">
+          <span className="cue-dot" />
+        </span>
         SCROLL TO LAUNCH
-        <svg width="14" height="20" viewBox="0 0 14 20" fill="none">
-          <path
-            d="M7 1 V 17 M2 12 L 7 18 L 12 12"
-            stroke="#9aa0ab"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
       </div>
     </section>
   );

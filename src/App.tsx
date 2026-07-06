@@ -168,7 +168,7 @@ const App: React.FC = () => {
             scrollTrigger: {
               trigger: sec,
               start,
-              toggleActions: "play none none reverse",
+              toggleActions: "play none none none",
             },
           });
         };
@@ -203,38 +203,22 @@ const App: React.FC = () => {
         );
       });
 
-      // the line descends into the toolkit
-      gsap.fromTo(
-        ".descent-line",
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "#toolkit",
-            start: "top 92%",
-            end: "top 50%",
-            scrub: true,
-          },
-        }
-      );
+      // pre-hide the cards so they never paint before their entrance
+      gsap.set(".tool-card, .knowledge-tile", { autoAlpha: 0, y: 40 });
 
-      // cards batch in
+      // cards drift up once from their pre-hidden state — entering the
+      // trigger never snaps them back, so there is nothing to flash
       ScrollTrigger.batch(".tool-card, .knowledge-tile", {
-        start: "top 86%",
+        start: "top 88%",
+        once: true,
         onEnter: (els) =>
-          gsap.fromTo(
-            els,
-            { y: 46, autoAlpha: 0 },
-            {
-              y: 0,
-              autoAlpha: 1,
-              stagger: 0.08,
-              duration: 0.6,
-              ease: "power3.out",
-              overwrite: true,
-            }
-          ),
+          gsap.to(els, {
+            y: 0,
+            autoAlpha: 1,
+            stagger: 0.07,
+            duration: 0.9,
+            ease: "power2.out",
+          }),
       });
     },
     { scope: rootRef }
