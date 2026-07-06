@@ -10,23 +10,16 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 /*
  * Section 06 — contact. Entrance choreography referenced from the
- * ram-portfolio: a gaussian curtain of bars sweeps up as the section
- * scrolls in, the inner content parallaxes, and everything holds
- * until the pixel artwork has loaded — then masked lines slide up
- * and the pixel-scatter converges on the left.
+ * ram-portfolio: a curtain with a circular hole expanding from its
+ * centre reveals the section as it scrolls in, the inner content
+ * parallaxes, and everything holds until the pixel artwork has
+ * loaded — then masked lines slide up and the pixel-scatter
+ * converges on the left.
  */
-
-const CURTAIN_BARS = 5;
-/* gaussian weights over the 5 bars (sigma = 5/3.5) */
-const WEIGHTS = Array.from({ length: CURTAIN_BARS }, (_, i) => {
-  const s = 5 / 3.5;
-  const d = i - (CURTAIN_BARS - 1) / 2;
-  return Math.exp(-(d * d) / (2 * s * s));
-});
 
 const Contact: React.FC = () => {
   const secRef = useRef<HTMLElement>(null);
-  const barRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const curtainRef = useRef<HTMLDivElement>(null);
   const [imgReady, setImgReady] = useState(false);
   const [inView, setInView] = useState(false);
   const [forced, setForced] = useState(false);
@@ -45,20 +38,23 @@ const Contact: React.FC = () => {
     () => {
       const sec = secRef.current!;
 
-      /* curtain: bars sweep up with gaussian offsets as we scroll in */
+      /* curtain: a circular hole expands from the centre as we scroll in */
+      const setCurtain = (progress: number) => {
+        const c = curtainRef.current;
+        if (!c) return;
+        const maxR =
+          Math.hypot(c.offsetWidth / 2, c.offsetHeight / 2) + 2;
+        const r = progress * maxR;
+        const m = `radial-gradient(circle at 50% 50%, transparent ${r}px, #000 ${r + 1}px)`;
+        c.style.webkitMaskImage = m;
+        c.style.maskImage = m;
+      };
       ScrollTrigger.create({
         trigger: sec,
         start: "top bottom",
         end: "top top",
-        onUpdate: (self) => {
-          barRefs.current.forEach((bar, i) => {
-            if (!bar) return;
-            const w = WEIGHTS[i];
-            const startAt = (1 - w) * 0.4;
-            const t = Math.min(1, Math.max(0, (self.progress - startAt) / 0.6));
-            bar.style.transform = `translateY(${-101 * t}%)`;
-          });
-        },
+        onUpdate: (self) => setCurtain(self.progress),
+        onRefresh: (self) => setCurtain(self.progress),
       });
 
       /* inner content parallax while entering */
@@ -113,17 +109,7 @@ const Contact: React.FC = () => {
       ref={secRef}
       data-shown={shown ? "1" : "0"}
     >
-      <div className="curtain" aria-hidden="true">
-        {Array.from({ length: CURTAIN_BARS }, (_, i) => (
-          <div
-            className="bar"
-            key={i}
-            ref={(el) => {
-              barRefs.current[i] = el;
-            }}
-          />
-        ))}
-      </div>
+      <div className="curtain" aria-hidden="true" ref={curtainRef} />
 
       <div className="sec-inner contact-parallax">
         <header className="sec-head">

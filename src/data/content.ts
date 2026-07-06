@@ -18,7 +18,7 @@ export const NAV: NavItem[] = [
   { id: "tradepulse", label: "Trade", idx: "01", flight: 0 },
   { id: "ragdesk", label: "RAG", idx: "02", flight: 1 },
   { id: "flowops", label: "Flow", idx: "03", flight: 2 },
-  { id: "mindshelf", label: "Shelf", idx: "04", flight: 3 },
+  { id: "designlab", label: "Design", idx: "04", flight: 3 },
   { id: "toolkit", label: "Toolkit", idx: "05", flight: -1 },
   { id: "contact", label: "Contact", idx: "06", flight: -1 },
 ];
@@ -97,9 +97,9 @@ export const SOCIALS = [
 export const MARQUEE_TOP = [
   "DEVELOPER",
   "AI",
-  "FINANCE",
+  "TRADING",
   "PROBLEM SOLVER",
-  "MISSION: PORTFOLIO",
+  "UI",
 ];
 
 export const MARQUEE_STACK = [

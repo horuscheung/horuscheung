@@ -11,6 +11,7 @@
 :root {
   --bg: #0b0d12;
   --bg-soft: #10131b;
+  --bg-raised: #15161a;
   --panel: #12151d;
   --line: rgba(255, 255, 255, 0.12);
   --line-soft: rgba(255, 255, 255, 0.07);
@@ -504,32 +505,104 @@ img {
 }
 
 /* -- AI reading library -- */
-.mock-shelf {
+.mock-design {
   display: flex;
   flex-direction: column;
   gap: 8px;
   height: clamp(150px, 21vh, 195px);
 
-  .ms-note {
-    border: 1px solid var(--line-soft);
-    border-left: 2px solid var(--accent, var(--blue));
-    padding: 6px 9px;
+  .md-canvas {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    gap: 8px;
+  }
 
-    .ms-book {
+  /* artboard: wireframe blocks for a screen being designed */
+  .md-frame {
+    flex: 1.4;
+    border: 1px solid var(--line-soft);
+    padding: 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .md-el {
       display: block;
-      font-size: 0.48rem;
-      letter-spacing: 0.14em;
-      color: var(--dim);
-      margin-bottom: 3px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.14);
     }
 
-    p {
-      font-size: 0.6rem;
-      line-height: 1.45;
+    .md-title {
+      width: 62%;
+      height: 12px;
+    }
+
+    .md-text {
+      width: 92%;
+      height: 6px;
+
+      &.short {
+        width: 70%;
+      }
+    }
+
+    .md-btn {
+      margin-top: auto;
+      width: 46%;
+      height: 16px;
+      border-radius: 3px;
+      background: var(--accent, var(--blue));
+      opacity: 0.85;
     }
   }
 
-  .ms-ai {
+  /* inspector: palette + type scale */
+  .md-panel {
+    flex: 1;
+    border: 1px solid var(--line-soft);
+    padding: 8px 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .md-label {
+      font-size: 0.46rem;
+      letter-spacing: 0.16em;
+      color: var(--dim);
+    }
+
+    .md-swatches {
+      display: flex;
+      gap: 5px;
+
+      i {
+        width: 13px;
+        height: 13px;
+        border-radius: 3px;
+      }
+    }
+
+    .md-type {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+
+      b {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        line-height: 1;
+      }
+
+      span {
+        font-size: 0.5rem;
+        color: var(--dim);
+        letter-spacing: 0.08em;
+      }
+    }
+  }
+
+  .md-note {
     margin-top: auto;
     font-size: 0.55rem;
     letter-spacing: 0.06em;
@@ -906,26 +979,51 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--ink);
   z-index: 2;
-
-  svg {
-    animation: cue-bob 1.6s ease-in-out infinite;
-  }
 }
 
-@keyframes cue-bob {
-  0%,
-  100% {
-    transform: translateY(0);
+/* mouse-shaped scroll indicator with a falling dot */
+.cue-mouse {
+  display: block;
+  width: 24px;
+  height: 38px;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-radius: 13px;
+  position: relative;
+}
+
+.cue-dot {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: translateX(-50%);
+  animation: cue-drop 1.8s ease-in-out infinite;
+}
+
+@keyframes cue-drop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
   }
-  50% {
-    transform: translateY(7px);
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 14px);
   }
 }
 
@@ -1090,29 +1188,24 @@ section {
 .contact-sec {
   padding-bottom: 40px;
   position: relative;
-  background: #0e1322;
+  background: var(--bg-raised);
   border-top: 1px solid var(--line-soft);
   overflow: hidden;
 }
 
-/* gaussian curtain bars sweeping up as the section scrolls in */
+/* curtain with a circular hole expanding as the section scrolls in
+   (the hole radius is driven from Contact.tsx via mask-image);
+   full viewport height so the circle is never cut by a straight edge */
 .curtain {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: min(46vh, 420px);
-  display: flex;
-  overflow: hidden;
+  height: 100vh;
+  height: 100svh;
+  background: var(--bg);
   z-index: 10;
   pointer-events: none;
-
-  .bar {
-    flex: 1;
-    height: 100%;
-    background: var(--bg);
-    will-change: transform;
-  }
 }
 
 /* hold the header until the pixel artwork has loaded */
@@ -1274,24 +1367,30 @@ section {
   z-index: 2;
 }
 
-/* the line continues: vertical descent guide at the top of toolkit */
-.descent-line {
-  width: 2px;
-  height: clamp(80px, 14vh, 150px);
-  margin: 0 auto 3rem;
-  background: linear-gradient(180deg, var(--accent), var(--accent-2));
-  transform-origin: top center;
-  transform: scaleY(0);
+/* toolkit: lighter panel so the hand-off reads against the sky */
+#toolkit {
+  background: var(--bg-raised);
+  border-top: 1px solid var(--line-soft);
+  padding-top: clamp(48px, 7vh, 80px);
   position: relative;
+}
 
-  &::after {
-    content: "◆";
-    position: absolute;
-    bottom: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--accent-2);
-    font-size: 10px;
+/* the flight line carries on: a glowing curve pierces the page
+   boundary and lands at the toolkit head (drawn from Toolkit.tsx) */
+.journey-curve {
+  position: absolute;
+  top: -16vh;
+  left: 0;
+  width: 100%;
+  height: 64vh;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.45))
+    drop-shadow(0 0 14px rgba(167, 139, 250, 0.3));
+
+  .jc-end {
+    fill: var(--accent-2);
+    font-size: 15px;
   }
 }
 
@@ -1408,16 +1507,12 @@ section {
     height: 108px;
   }
 
-  .mock-shelf {
+  .mock-design {
     height: 126px;
 
-    /* one note is enough on a narrow card */
-    .ms-note:nth-of-type(2) {
+    /* the inspector is too cramped on a narrow card */
+    .md-panel {
       display: none;
-    }
-
-    .ms-note p {
-      font-size: 0.55rem;
     }
   }
 
@@ -1476,7 +1571,7 @@ section {
   }
 
   .jl-head-pulse,
-  .hero-cue svg,
+  .cue-dot,
   .hero-eyebrow .blink {
     animation: none;
   }
