@@ -14,7 +14,7 @@ interface MarqueeProps {
 
 const Marquee: React.FC<MarqueeProps> = ({
   items,
-  color = "#faff00",
+  color = "transparent",
   reverse = false,
   speed = 22,
 }) => {

@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
 // Font families
-$font-primary: 'Inter', sans-serif;
-$font-secondary: 'Space Grotesk', sans-serif;
-$font-display: 'Syne', sans-serif;
+$font-primary: 'Manrope', sans-serif;
+$font-secondary: 'Manrope', sans-serif;
+$font-display: 'Unbounded', sans-serif;
 
 // Font sizes - Fluid Typography
 $fs-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
